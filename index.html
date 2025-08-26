@@ -9,27 +9,48 @@
       text-align: center;
       padding: 20px;
     }
+
+    .captcha-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .captcha-header img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
     .captcha-container {
       display: flex;
       justify-content: center;
       gap: 10px;
       margin: 20px 0;
+      flex-wrap: wrap;
     }
+
     .captcha-item {
-      border: 2px solid transparent;
+      border: 2px solid #ccc;
       border-radius: 8px;
       cursor: pointer;
       transition: border 0.2s;
+      padding: 4px;
     }
+
     .captcha-item img {
       width: 100px;
       height: 100px;
       object-fit: contain;
       border-radius: 6px;
     }
+
     .captcha-item.selected {
       border: 2px solid #007bff;
     }
+
     .btn {
       background: #c00;
       color: #fff;
@@ -39,30 +60,36 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     .btn:hover {
       background: #a00;
     }
   </style>
 </head>
 <body>
-  <h2>Please check all boxes with this character.</h2>
+  <div class="captcha-header">
+    <h2>Please check all boxes with this character.</h2>
+    <img src="cap/meka.png" alt="Target character">
+  </div>
+
   <div class="captcha-container">
     <div class="captcha-item" data-correct="false">
-      <img src="cap/bomb.png" alt="Option 1">
+      <img src="cap/bomb.png" alt="Bomb">
     </div>
     <div class="captcha-item" data-correct="true">
-      <img src="cap/rabb.png" alt="Option 2">
+      <img src="cap/meka.png" alt="Meka">
     </div>
     <div class="captcha-item" data-correct="false">
-      <img src="cap/blue.png" alt="Option 3">
+      <img src="cap/girl.png" alt="Girl">
     </div>
     <div class="captcha-item" data-correct="false">
-      <img src="cap/girl.png" alt="Option 4">
+      <img src="cap/rabb.png" alt="Rabb">
     </div>
     <div class="captcha-item" data-correct="true">
-      <img src="cap/meka.png" alt="Option 5">
+      <img src="cap/meka.png" alt="Meka again">
     </div>
   </div>
+
   <button class="btn" onclick="checkCaptcha()">Log In</button>
 
   <script>

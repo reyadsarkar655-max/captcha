@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image CAPTCHA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .captcha-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .captcha-item {
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border 0.2s;
+    }
+    .captcha-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+    .captcha-item.selected {
+      border: 2px solid #007bff;
+    }
+    .btn {
+      background: #c00;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #a00;
+    }
+  </style>
+</head>
+<body>
+  <h2>Please check all boxes with this character.</h2>
+  <div class="captcha-container">
+    <div class="captcha-item" data-correct="false">
+      <img src="bomberman.png" alt="Option 1">
+    </div>
+    <div class="captcha-item" data-correct="true">
+      <img src="squareface1.png" alt="Option 2">
+    </div>
+    <div class="captcha-item" data-correct="false">
+      <img src="hammerboy.png" alt="Option 3">
+    </div>
+    <div class="captcha-item" data-correct="false">
+      <img src="jumpboy.png" alt="Option 4">
+    </div>
+    <div class="captcha-item" data-correct="true">
+      <img src="squareface2.png" alt="Option 5">
+    </div>
+  </div>
+  <button class="btn" onclick="checkCaptcha()">Log In</button>
+
+  <script>
+    const items = document.querySelectorAll('.captcha-item');
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('selected');
+      });
+    });
+
+    function checkCaptcha() {
+      let valid = true;
+      items.forEach(item => {
+        const isCorrect = item.dataset.correct === "true";
+        const isSelected = item.classList.contains("selected");
+        if (isCorrect !== isSelected) {
+          valid = false;
+        }
+      });
+      if (valid) {
+        alert("CAPTCHA passed. Logging in...");
+      } else {
+        alert("Try again.");
+      }
+    }
+  </script>
+</body>
+</html>

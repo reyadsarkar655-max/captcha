@@ -18,9 +18,10 @@
       margin-bottom: 20px;
     }
 
+    /* target image beside heading */
     .captcha-header img {
-      width: 60px;
-      height: 60px;
+      width: 42px;   /* 70% of 60px */
+      height: 42px;
       object-fit: contain;
     }
 
@@ -37,12 +38,12 @@
       border-radius: 8px;
       cursor: pointer;
       transition: border 0.2s;
-      padding: 4px;
+      padding: 3px;
     }
 
     .captcha-item img {
-      width: 100px;
-      height: 100px;
+      width: 70px;   /* 70% of 100px */
+      height: 70px;
       object-fit: contain;
       border-radius: 6px;
     }
@@ -50,34 +51,20 @@
     .captcha-item.selected {
       border: 2px solid #007bff;
     }
-
-    .btn {
-      background: #c00;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: #a00;
-    }
   </style>
 </head>
 <body>
   <div class="captcha-header">
-    <p>Please check all boxes with this character.</p>
-    <img src="cap/bomb.png" alt="Target character">
+    <h2>Please check all boxes with this character.</h2>
+    <img src="cap/meka.png" alt="Target character">
   </div>
 
   <div class="captcha-container">
     <div class="captcha-item" data-correct="false">
-      <img src="cap/meka.png" alt="Bomb">
+      <img src="cap/bomb.png" alt="Bomb">
     </div>
     <div class="captcha-item" data-correct="true">
-      <img src="cap/bomb.png" alt="Meka">
+      <img src="cap/meka.png" alt="Meka">
     </div>
     <div class="captcha-item" data-correct="false">
       <img src="cap/girl.png" alt="Girl">
@@ -86,11 +73,9 @@
       <img src="cap/rabb.png" alt="Rabb">
     </div>
     <div class="captcha-item" data-correct="true">
-      <img src="cap/bomb.png" alt="Meka again">
+      <img src="cap/meka.png" alt="Meka again">
     </div>
   </div>
-
-  <button class="btn" onclick="checkCaptcha()">Log In</button>
 
   <script>
     const items = document.querySelectorAll('.captcha-item');
@@ -99,22 +84,6 @@
         item.classList.toggle('selected');
       });
     });
-
-    function checkCaptcha() {
-      let valid = true;
-      items.forEach(item => {
-        const isCorrect = item.dataset.correct === "true";
-        const isSelected = item.classList.contains("selected");
-        if (isCorrect !== isSelected) {
-          valid = false;
-        }
-      });
-      if (valid) {
-        alert("CAPTCHA passed. Logging in...");
-      } else {
-        alert("Try again.");
-      }
-    }
   </script>
 </body>
 </html>
